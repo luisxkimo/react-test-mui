@@ -1,0 +1,26 @@
+{
+  "name": "reactjs-test",
+  "version": "1.0.0",
+  "description": "Aplicación de Pruebas ES6 + React",
+  "main": "./src/lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^10.2.1",
+    "chart.js": "^1.0.2",
+    "gulp": "^3.8.11",
+    "gulp-eslint": "^0.12.0",
+    "gulp-sass": "^2.0.1",
+    "gulp-watch": "^4.2.4",
+    "jquery": "^2.1.4",
+    "material-ui": "^0.8.0",
+    "react-chartjs": "^0.6.0",
+    "react-router": "^0.13.3",
+    "react-tap-event-plugin": "^0.1.7",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "~1.1.0"
+  }
+}

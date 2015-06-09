@@ -1,0 +1,63 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save-dev',
+1 verbose cli   'underscore' ]
+2 info using npm@1.3.10
+3 info using node@v0.10.25
+4 warn package.json reactjs-test@1.0.0 No repository field.
+5 warn package.json reactjs-test@1.0.0 No README data
+6 verbose readDependencies using package.json deps
+7 verbose cache add [ 'underscore', null ]
+8 verbose cache add name=undefined spec="underscore" args=["underscore",null]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: 'underscore',
+9 verbose parsed url   path: 'underscore',
+9 verbose parsed url   href: 'underscore' }
+10 silly lockFile 64bc6893-underscore underscore
+11 verbose lock underscore /home/luis-sanchez/.npm/64bc6893-underscore.lock
+12 silly lockFile 64bc6893-underscore underscore
+13 silly lockFile 64bc6893-underscore underscore
+14 verbose addNamed [ 'underscore', '' ]
+15 verbose addNamed [ null, '*' ]
+16 silly lockFile 7629b758-underscore underscore@
+17 verbose lock underscore@ /home/luis-sanchez/.npm/7629b758-underscore.lock
+18 silly addNameRange { name: 'underscore', range: '*', hasData: false }
+19 verbose url raw underscore
+20 verbose url resolving [ 'https://registry.npmjs.org/', './underscore' ]
+21 verbose url resolved https://registry.npmjs.org/underscore
+22 info trying registry request attempt 1 at 17:38:34
+23 http GET https://registry.npmjs.org/underscore
+24 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND
+25 info trying registry request attempt 2 at 17:38:44
+26 http GET https://registry.npmjs.org/underscore
+27 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND
+28 info trying registry request attempt 3 at 17:39:44
+29 http GET https://registry.npmjs.org/underscore
+30 silly lockFile 7629b758-underscore underscore@
+31 silly lockFile 7629b758-underscore underscore@
+32 error network getaddrinfo ENOTFOUND
+32 error network This is most likely not a problem with npm itself
+32 error network and is related to network connectivity.
+32 error network In most cases you are behind a proxy or have bad network settings.
+32 error network
+32 error network If you are behind a proxy, please make sure that the
+32 error network 'proxy' config is set properly.  See: 'npm help config'
+33 error System Linux 3.13.0-37-generic
+34 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "--save-dev" "underscore"
+35 error cwd /home/luis-sanchez/devel/reactjs-test-mui/reactjs-test/src
+36 error node -v v0.10.25
+37 error npm -v 1.3.10
+38 error syscall getaddrinfo
+39 error code ENOTFOUND
+40 error errno ENOTFOUND
+41 verbose exit [ 1, true ]
