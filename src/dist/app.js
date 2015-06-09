@@ -50681,10 +50681,10 @@ var LightTheme = {
 			};
 		},
 		getComponentThemes: function(palette) {
-			var cardColor = Colors.grey800;
 			return {
 				appBar: {
-					color: Colors.indigo900
+					color: Colors.indigo900,
+					textColor: MUI.Styles.Typography.textFullWhite
 				},
 				
 				leftNav: {
@@ -50711,13 +50711,8 @@ LightTheme.customStyles.menuHeader = {
 };
 
 LightTheme.customStyles.company = {
-
 	marginLeft: '10px',
-	fontSize: '24px',
-	color: MUI.Styles.Typography.textFullWhite,
-	lineHeight: MUI.Styles.Spacing.desktopKeylineIncrement + 'px',
-	backgroundColor: LightTheme.getPalette().primary1Color,
-	cursor: 'pointer'
+	color: MUI.Styles.Typography.textFullWhite
 };
 
 module.exports = LightTheme;
@@ -50761,8 +50756,7 @@ var App = React.createClass({displayName: "App",
 		return {
 			menuItems: Builder.createReportMenuOptions(),
 			change: false,
-			company: "Initial State"
-
+			company: facade.getMainCompany()
 		};
 	},
 
@@ -50792,7 +50786,7 @@ var App = React.createClass({displayName: "App",
 
 	createDialog: function () {
 
-		var element = null;
+		var companyDialog = null;
 
 			var actions = [
 				{
@@ -50802,7 +50796,7 @@ var App = React.createClass({displayName: "App",
 				}
 			];
 
-			element = (
+			companyDialog = (
 				React.createElement(Dialog, {
 					ref: "dialog", 
 					title: "Seleccione establecimiento", 
@@ -50825,10 +50819,11 @@ var App = React.createClass({displayName: "App",
 					)
 				));
 
-		return element;
+		return companyDialog;
 	},
 
 	selectNewCompany: function () {
+
 		var selectCompany = this.refs.companyGroup.getSelectedValue();
 		var companyName = facade.getCompanyName(selectCompany);
 
@@ -50838,20 +50833,21 @@ var App = React.createClass({displayName: "App",
 
 	},
 
+	getCompanyTitle: function(routes) {
+
+		return routes[routes.length - 1].handler.label;
+	},
+
 	render: function() {
 
-		var activeRoutes = this.getRoutes();
-		var activeTitle = activeRoutes[activeRoutes.length - 1].handler.label;
+		var appTitle = this.getCompanyTitle(this.getRoutes());
 		var headerP = React.createElement(Profile, {theme: theme, company: this.state.company, changeCompany: this.changeCompany});
-
-		var popUp = this.createDialog();
+		var companyDialog = this.createDialog();
 
 		return React.createElement("div", null, 
-			popUp, 
-					React.createElement(AppBar, {title: activeTitle, iconClassNameRight: "muidocs-icon-navigation-expand-more", onLeftIconButtonTouchTap: this.toggleMenu}), 
+			companyDialog, 
+					React.createElement(AppBar, {title: appTitle, iconClassNameRight: "muidocs-icon-navigation-expand-more", onLeftIconButtonTouchTap: this.toggleMenu}), 
 					React.createElement(LeftNav, {ref: "leftNav", header: headerP, menuItems: this.state.menuItems, docked: false, onChange: this.onMenuItemSelected}), 
-
-
 					React.createElement(RouteHandler, null)
 				);
 	}
@@ -50946,6 +50942,12 @@ var companies = [
 
 var Facade = module.exports = {};
 
+// Para que el usuario seleccione que empresa quiere ver nada más acceder a MyAgora
+Facade.getMainCompany = function () {
+
+	return companies[0].name;
+};
+
 Facade.getCompanyName = function(value) {
 
 	var companyName = "My Agora";
@@ -50974,32 +50976,19 @@ var React = require("react"),
 var	RouteHandler = Router.RouteHandler;
 
 var FontIcon = MUI.FontIcon;
-var Dialog = MUI.Dialog;
-var Checkbox = MUI.Checkbox;
 
 var Profile = React.createClass({displayName: "Profile",
 
-	getChildContext: function() {
-		return { muiTheme: this.props.theme };
-	},
-
-	childContextTypes: {
-		muiTheme: React.PropTypes.object
-	},
-
-
-
 	render: function() {
 
-		return (React.createElement("div", {onClick: this.props.changeCompany}, 
+		return (React.createElement("div", {style: this.props.theme.customStyles.menuHeader, onClick: this.props.changeCompany}, 
 
-
-			React.createElement("span", {style: this.props.theme.customStyles.menuHeader, className: "icon-user"}
-
+			React.createElement("span", {className: "icon-user"}
 			), 
-			React.createElement("span", {style: this.props.theme.customStyles.company, onClick: this.changeCompany}, 
-			this.props.company
-				)
+
+			React.createElement("span", {style: this.props.theme.customStyles.company}, 
+				this.props.company
+			)
 		));
 	}
 });
@@ -51075,18 +51064,24 @@ module.exports = Radar;
  * Created by luis-sanchez on 6/3/15.
  */
 
-var Reports = require("./Reports");
+var Reports = require("./Reports"),
+	mui = require('material-ui');
 
+var MenuItem = mui.MenuItem;
 var Builder = module.exports = {};
 
 Builder.createReportMenuOptions = function() {
 
-	return Reports.map( function(item) {
+	var items = [{ type: MenuItem.Types.SUBHEADER, text: 'Informes' }];
+
+	var reports = Reports.map( function(item) {
 		return {
 			route: item.routeName,
 			text: item.label
 		};
 	});
+
+	return items.concat(reports);
 };
 
 Builder.getTitleName = function(urlPath) {
@@ -51101,7 +51096,7 @@ Builder.getTitleName = function(urlPath) {
 	return titleNode;
 };
 
-},{"./Reports":338}],338:[function(require,module,exports){
+},{"./Reports":338,"material-ui":31}],338:[function(require,module,exports){
 /**
  * Created by luis-sanchez on 6/3/15.
  */
@@ -51186,6 +51181,7 @@ function initialiceRoutes() {
 	var reports = configureReportRoutes();
 	var controls = configureControlRoutes();
 
+	App.label = "My Agora";
 	return 	(React.createElement(Route, {name: "app", path: "/", handler: App}, 
 		reports, 
 		controls

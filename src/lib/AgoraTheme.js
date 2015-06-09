@@ -13,10 +13,10 @@ var LightTheme = {
 			};
 		},
 		getComponentThemes: function(palette) {
-			var cardColor = Colors.grey800;
 			return {
 				appBar: {
-					color: Colors.indigo900
+					color: Colors.indigo900,
+					textColor: MUI.Styles.Typography.textFullWhite
 				},
 				
 				leftNav: {
@@ -43,13 +43,8 @@ LightTheme.customStyles.menuHeader = {
 };
 
 LightTheme.customStyles.company = {
-
 	marginLeft: '10px',
-	fontSize: '24px',
-	color: MUI.Styles.Typography.textFullWhite,
-	lineHeight: MUI.Styles.Spacing.desktopKeylineIncrement + 'px',
-	backgroundColor: LightTheme.getPalette().primary1Color,
-	cursor: 'pointer'
+	color: MUI.Styles.Typography.textFullWhite
 };
 
 module.exports = LightTheme;

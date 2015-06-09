@@ -2,18 +2,24 @@
  * Created by luis-sanchez on 6/3/15.
  */
 
-var Reports = require("./Reports");
+var Reports = require("./Reports"),
+	mui = require('material-ui');
 
+var MenuItem = mui.MenuItem;
 var Builder = module.exports = {};
 
 Builder.createReportMenuOptions = function() {
 
-	return Reports.map( function(item) {
+	var items = [{ type: MenuItem.Types.SUBHEADER, text: 'Informes' }];
+
+	var reports = Reports.map( function(item) {
 		return {
 			route: item.routeName,
 			text: item.label
 		};
 	});
+
+	return items.concat(reports);
 };
 
 Builder.getTitleName = function(urlPath) {

@@ -42,6 +42,7 @@ function initialiceRoutes() {
 	var reports = configureReportRoutes();
 	var controls = configureControlRoutes();
 
+	App.label = "My Agora";
 	return 	(<Route name="app" path="/" handler={App}>
 		{reports}
 		{controls}

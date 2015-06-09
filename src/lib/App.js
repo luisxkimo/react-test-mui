@@ -37,8 +37,7 @@ var App = React.createClass({
 		return {
 			menuItems: Builder.createReportMenuOptions(),
 			change: false,
-			company: "Initial State"
-
+			company: facade.getMainCompany()
 		};
 	},
 
@@ -68,7 +67,7 @@ var App = React.createClass({
 
 	createDialog: function () {
 
-		var element = null;
+		var companyDialog = null;
 
 			var actions = [
 				{
@@ -78,7 +77,7 @@ var App = React.createClass({
 				}
 			];
 
-			element = (
+			companyDialog = (
 				<Dialog
 					ref="dialog"
 					title= "Seleccione establecimiento"
@@ -101,10 +100,11 @@ var App = React.createClass({
 					</RadioButtonGroup>
 				</Dialog>);
 
-		return element;
+		return companyDialog;
 	},
 
 	selectNewCompany: function () {
+
 		var selectCompany = this.refs.companyGroup.getSelectedValue();
 		var companyName = facade.getCompanyName(selectCompany);
 
@@ -114,20 +114,21 @@ var App = React.createClass({
 
 	},
 
+	getCompanyTitle: function(routes) {
+
+		return routes[routes.length - 1].handler.label;
+	},
+
 	render: function() {
 
-		var activeRoutes = this.getRoutes();
-		var activeTitle = activeRoutes[activeRoutes.length - 1].handler.label;
-		var headerP = <Profile theme={theme} company={this.state.company} changeCompany={this.changeCompany}/>;
-
-		var popUp = this.createDialog();
+		var appTitle = this.getCompanyTitle(this.getRoutes());
+		var headerP = <Profile theme={theme} company={this.state.company} changeCompany={this.changeCompany} />;
+		var companyDialog = this.createDialog();
 
 		return <div>
-			{popUp}
-					<AppBar title={activeTitle} iconClassNameRight="muidocs-icon-navigation-expand-more" onLeftIconButtonTouchTap={this.toggleMenu}/>
+			{companyDialog}
+					<AppBar title={appTitle} iconClassNameRight="muidocs-icon-navigation-expand-more" onLeftIconButtonTouchTap={this.toggleMenu}/>
 					<LeftNav ref="leftNav" header={headerP} menuItems={this.state.menuItems} docked={false} onChange={this.onMenuItemSelected}/>
-
-
 					<RouteHandler/>
 				</div>;
 	}

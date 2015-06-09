@@ -7,32 +7,19 @@ var React = require("react"),
 var	RouteHandler = Router.RouteHandler;
 
 var FontIcon = MUI.FontIcon;
-var Dialog = MUI.Dialog;
-var Checkbox = MUI.Checkbox;
 
 var Profile = React.createClass({
 
-	getChildContext: function() {
-		return { muiTheme: this.props.theme };
-	},
-
-	childContextTypes: {
-		muiTheme: React.PropTypes.object
-	},
-
-
-
 	render: function() {
 
-		return (<div onClick={this.props.changeCompany}>
+		return (<div style={this.props.theme.customStyles.menuHeader} onClick={this.props.changeCompany}>
 
-
-			<span style={this.props.theme.customStyles.menuHeader} className="icon-user">
-
+			<span className="icon-user">
 			</span>
-			<span style={this.props.theme.customStyles.company} onClick={this.changeCompany}>
-			{this.props.company}
-				</span>
+
+			<span style={this.props.theme.customStyles.company}>
+				{this.props.company}
+			</span>
 		</div>);
 	}
 });

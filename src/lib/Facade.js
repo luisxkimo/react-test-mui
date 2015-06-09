@@ -19,6 +19,12 @@ var companies = [
 
 var Facade = module.exports = {};
 
+// Para que el usuario seleccione que empresa quiere ver nada más acceder a MyAgora
+Facade.getMainCompany = function () {
+
+	return companies[0].name;
+};
+
 Facade.getCompanyName = function(value) {
 
 	var companyName = "My Agora";
