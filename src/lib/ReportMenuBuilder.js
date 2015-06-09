@@ -18,8 +18,9 @@ Builder.createReportMenuOptions = function() {
 			text: item.label
 		};
 	});
+	var options = [{ type: MenuItem.Types.SUBHEADER, text: 'Opciones' }];
 
-	return items.concat(reports);
+	return items.concat(reports).concat(options);
 };
 
 Builder.getTitleName = function(urlPath) {

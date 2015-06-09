@@ -1,30 +1,29 @@
 var MUI = require("material-ui");
 
 var Colors = MUI.Styles.Colors,
-		ColorManipulator = MUI.Utils.ColorManipulator;
+	ColorManipulator = MUI.Utils.ColorManipulator;
 
 var LightTheme = {
 		getPalette: function() {
 			return {
-				textColor: Colors.fullWhite,
-				canvasColor: '#303030',
-				borderColor: ColorManipulator.fade(Colors.fullWhite, 0.3), //Colors.grey300
-				disabledColor: ColorManipulator.fade(Colors.fullWhite, 0.3)
+				primary1Color: Colors.blue700,
+				primary2Color: Colors.blue500,
+				primary3Color: Colors.blue300,
+				accent1Color: Colors.deepOrangeA700,
+				accent2Color: Colors.deepOrangeA400,
+				accent3Color: Colors.deepOrangeA200,
+				canvasColor: Colors.white,
+				borderColor: Colors.grey300,
+				disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3)
 			};
 		},
 		getComponentThemes: function(palette) {
 			return {
 				appBar: {
-					color: Colors.indigo900,
+					color: Colors.blue700,
 					textColor: MUI.Styles.Typography.textFullWhite
-				},
-				
-				leftNav: {
-					color: Colors.indigo900
-				},
-				menu: {
-					containerBackgroundColor: Colors.indigo900
 				}
+
 			};
 		}
 };
@@ -45,6 +44,7 @@ LightTheme.customStyles.menuHeader = {
 LightTheme.customStyles.company = {
 	marginLeft: '10px',
 	color: MUI.Styles.Typography.textFullWhite
+
 };
 
 module.exports = LightTheme;

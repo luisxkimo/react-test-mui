@@ -122,13 +122,13 @@ var App = React.createClass({
 	render: function() {
 
 		var appTitle = this.getCompanyTitle(this.getRoutes());
-		var headerP = <Profile theme={theme} company={this.state.company} changeCompany={this.changeCompany} />;
+		var header = <Profile theme={theme} company={this.state.company} changeCompany={this.changeCompany} />;
 		var companyDialog = this.createDialog();
-
+		var iconRight = 'icon-envelop';
 		return <div>
 			{companyDialog}
-					<AppBar title={appTitle} iconClassNameRight="muidocs-icon-navigation-expand-more" onLeftIconButtonTouchTap={this.toggleMenu}/>
-					<LeftNav ref="leftNav" header={headerP} menuItems={this.state.menuItems} docked={false} onChange={this.onMenuItemSelected}/>
+					<AppBar title={appTitle} iconClassNameRight={iconRight} onLeftIconButtonTouchTap={this.toggleMenu}/>
+					<LeftNav ref="leftNav" header={header} menuItems={this.state.menuItems} docked={false} onChange={this.onMenuItemSelected}/>
 					<RouteHandler/>
 				</div>;
 	}

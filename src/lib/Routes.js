@@ -31,9 +31,7 @@ function configureReportRoutes() {
 function configureControlRoutes() {
 
 	var routes = [];
-
 	/*routes.push(createRoute("user", "/user", null));*/
-
 	return routes;
 }
 
