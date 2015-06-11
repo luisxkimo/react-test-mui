@@ -67,8 +67,6 @@ var App = React.createClass({
 
 	createDialog: function () {
 
-		var companyDialog = null;
-
 			var actions = [
 				{
 					text: 'Seleccionar',
@@ -77,7 +75,7 @@ var App = React.createClass({
 				}
 			];
 
-			companyDialog = (
+		var companyDialog = (
 				<Dialog
 					ref="dialog"
 					title= "Seleccione establecimiento"
@@ -129,7 +127,10 @@ var App = React.createClass({
 			{companyDialog}
 					<AppBar title={appTitle} iconClassNameRight={iconRight} onLeftIconButtonTouchTap={this.toggleMenu}/>
 					<LeftNav ref="leftNav" header={header} menuItems={this.state.menuItems} docked={false} onChange={this.onMenuItemSelected}/>
-					<RouteHandler/>
+
+					<div id="bodyReport" style={theme.customStyles.main}>
+						<RouteHandler/>
+					</div>
 				</div>;
 	}
 });

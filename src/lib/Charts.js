@@ -1,9 +1,16 @@
 var React = require("react"),
-	Charts =  require("react-chartjs"); 
+	Charts =  require("react-chartjs"),
+	Color = require('./ColorTools'),
+	Facade = require("./Facade");
 
 var Line = Charts.Line,
 	Bar = Charts.Bar,
 	Pie = Charts.Pie;
+
+Pie.defaults.global = {
+
+	whether
+};
 
 function createLineAndBarData(){
 
@@ -34,29 +41,37 @@ function createLineAndBarData(){
 	};
 }
 
-function createPieData() {
-	
-	return [
-			{
-				value: 300,
-				color: "#F7464A",
-				highlight: "#FF5A5E",
-				label: "Red"
-			},
-			{
-				value: 50,
-				color: "#46BFBD",
-				highlight: "#5AD3D1",
-				label: "Green"
-			},
-			{
-				value: 100,
-				color: "#FDB45C",
-				highlight: "#FFC870",
-				label: "Yellow"
-			}
-		];
+function majorGroupSale(name, quantity) {
+
+	return {
+		Name: name,
+		Quantity: quantity
+	};
 }
+
+
+
+function createPieData() {
+	var sales = Facade.getMajorGroupSales().map(x =>
+			majorGroupSale(x.MajorGroupName, x.Quantity)
+	);
+
+	var pieItems = sales.map(x =>
+	{
+
+		var colors = Color.getColors();
+
+		return {
+			value: x.Quantity,
+			color: colors[0],
+			highlight: colors[1],
+			label: x.Name
+		};
+	});
+
+	return pieItems;
+}
+
 
 module.exports = {
 	"LineChart": React.createClass({ render: function() { return <Line data={createLineAndBarData()}/>; } }),

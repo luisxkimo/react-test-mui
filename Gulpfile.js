@@ -24,7 +24,7 @@ gulp.task("build", ["lint"], function () {
 				entries: "./src/lib/index.js",
 				extensions: [".js"]
 			})
-			.transform(reactify)
+			.transform(reactify, {es6: true})
 			.bundle()
 			.pipe(fs.createWriteStream("./src/dist/app.js"))
 			.on("error", function (err) { console.log("Error [build]: " + err.message); });

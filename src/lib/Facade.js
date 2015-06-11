@@ -41,4 +41,23 @@ Facade.getCompanyName = function(value) {
 
 };
 
+Facade.getMajorGroupSales = function() {
+
+	return [
+		{
+			MajorGroupName: 'Bebidas',
+			Quantity: 300
+		},
+		{
+			MajorGroupName: 'Comida',
+			Quantity: 400
+		},
+		{
+			MajorGroupName: 'Servicios',
+			Quantity: 500
+		}
+	];
+
+};
+
 module.exports = Facade;

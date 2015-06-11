@@ -3,7 +3,7 @@ var MUI = require("material-ui");
 var Colors = MUI.Styles.Colors,
 	ColorManipulator = MUI.Utils.ColorManipulator;
 
-var LightTheme = {
+var theme = {
 		getPalette: function() {
 			return {
 				primary1Color: Colors.blue700,
@@ -27,24 +27,33 @@ var LightTheme = {
 			};
 		}
 };
-LightTheme.customStyles = {};
+theme.customStyles = {};
 
-LightTheme.customStyles.menuHeader = {
+theme.customStyles.menuHeader = {
 	cursor: 'pointer',
 	fontSize: '24px',
 	color: MUI.Styles.Typography.textFullWhite,
 	lineHeight: MUI.Styles.Spacing.desktopKeylineIncrement + 'px',
 	fontWeight: MUI.Styles.Typography.fontWeightLight,
-	backgroundColor: LightTheme.getPalette().primary1Color,
+	backgroundColor: theme.getPalette().primary1Color,
 	paddingLeft: MUI.Styles.Spacing.desktopGutter,
 	paddingTop: '0px',
 	marginBottom: '8px'
 };
 
-LightTheme.customStyles.company = {
+theme.customStyles.company = {
 	marginLeft: '10px',
 	color: MUI.Styles.Typography.textFullWhite
 
 };
 
-module.exports = LightTheme;
+theme.customStyles.main = {
+
+	textAlign: 'center',
+	backgroundColor: theme.getPalette().borderColor
+
+};
+
+
+
+module.exports = theme;
