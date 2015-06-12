@@ -49,8 +49,7 @@ theme.customStyles.company = {
 
 theme.customStyles.main = {
 
-	textAlign: 'center',
-	backgroundColor: theme.getPalette().borderColor
+	textAlign: 'center'
 
 };
 

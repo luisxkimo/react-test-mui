@@ -2,16 +2,17 @@
  * Created by luis-sanchez on 6/3/15.
  */
 var Charts = require("./Charts"),
+	PieChart = require('./Reports/MajorGroupSales'),
+	WeekSales = require('./Reports/WeekSales'),
 	Radar = require("./Radar");
 
-var PieChart = Charts.PieChart,
-	BarChart = Charts.BarChart,
+var BarChart = Charts.BarChart,
 	LineChart = Charts.LineChart;
 
 var Reports = [
 	{
 		routeName: "pie",
-		routePath: "/pie",
+		routePath: "/piepiepie",
 		label: "Pie Report",
 		handler: PieChart
 	},
@@ -24,8 +25,8 @@ var Reports = [
 	{
 		routeName:"line",
 		routePath:"/line",
-		label:"Line Report",
-		handler: LineChart
+		label:"Week Line Report",
+		handler: WeekSales
 	},
 	{
 		routeName:"radar",

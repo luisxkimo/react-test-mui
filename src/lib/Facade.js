@@ -1,6 +1,7 @@
 /**
  * Created by luis-sanchez on 6/9/15.
  */
+var Color = require("./ColorTools");
 
 var companies = [
 	{
@@ -43,10 +44,11 @@ Facade.getCompanyName = function(value) {
 
 Facade.getMajorGroupSales = function() {
 
-	return [
+	var data = [
 		{
 			MajorGroupName: 'Bebidas',
 			Quantity: 300
+
 		},
 		{
 			MajorGroupName: 'Comida',
@@ -58,6 +60,15 @@ Facade.getMajorGroupSales = function() {
 		}
 	];
 
+	data.map(x=>{
+
+		var colored = Color.getColors();
+		x.RealColor = colored[0];
+		x.LightColor = colored[1];
+
+	});
+
+	return data;
 };
 
 module.exports = Facade;

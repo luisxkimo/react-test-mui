@@ -7,10 +7,6 @@ var Line = Charts.Line,
 	Bar = Charts.Bar,
 	Pie = Charts.Pie;
 
-Pie.defaults.global = {
-
-	whether
-};
 
 function createLineAndBarData(){
 
@@ -41,40 +37,7 @@ function createLineAndBarData(){
 	};
 }
 
-function majorGroupSale(name, quantity) {
-
-	return {
-		Name: name,
-		Quantity: quantity
-	};
-}
-
-
-
-function createPieData() {
-	var sales = Facade.getMajorGroupSales().map(x =>
-			majorGroupSale(x.MajorGroupName, x.Quantity)
-	);
-
-	var pieItems = sales.map(x =>
-	{
-
-		var colors = Color.getColors();
-
-		return {
-			value: x.Quantity,
-			color: colors[0],
-			highlight: colors[1],
-			label: x.Name
-		};
-	});
-
-	return pieItems;
-}
-
-
 module.exports = {
 	"LineChart": React.createClass({ render: function() { return <Line data={createLineAndBarData()}/>; } }),
-	"BarChart": React.createClass({ render: function() { return <Bar data={createLineAndBarData()}/>; } }),
-	"PieChart": React.createClass({ render: function() { return <Pie data={createPieData()}/>; } })
+	"BarChart": React.createClass({ render: function() { return <Bar data={createLineAndBarData()}/>; } })
 };
