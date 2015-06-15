@@ -2,12 +2,17 @@
  * Created by luis-sanchez on 6/12/15.
  */
 var BaseReport = require('./BaseReport');
+var theme = require("../AgoraTheme");
+var Menu = require('material-ui').Menu;
 
 var Pie = BaseReport.Charts.Pie;
 var React  = BaseReport.React;
+var Sales = BaseReport.Facade.getMajorGroupSales();
+
+
 
 function createPieData() {
-	var sales = BaseReport.Facade.getMajorGroupSales();
+	var sales = Sales;
 
 	var pieItems = sales.map(x =>
 	{
@@ -18,15 +23,6 @@ function createPieData() {
 			label: x.MajorGroupName
 		};
 	});
-
-	/*pieItems[0] = {
-		value: 300,
-		color: "#F7464A",
-		highlight: "#FF5A5E",
-		label: "Bebidas"
-
-	};*/
-
 	return pieItems;
 }
 
@@ -38,6 +34,25 @@ function createPieOptions() {
 		percentageInnerCutout : 20
 
 	};
+}
+
+function createGridConfiguration() {
+
+	var count = 1;
+
+
+	return Sales.map(x=> {
+
+		var z = {
+			payload: '' + count,
+			text: '' + x.MajorGroupName,
+			number: '' + x.Quantity
+		};
+		count = count + 1;
+
+		return z;
+	});
+
 }
 
 function createLeyend(html) {
@@ -68,10 +83,13 @@ var PieReport = React.createClass({
 	render: function() {
 
 		var chart = <Pie ref="pieCharting" data={createPieData()} options={createPieOptions()}/>;
-
+		var items = createGridConfiguration();
 		return <div>
-			<div id="charDiv">{chart}</div>
-			<div dangerouslySetInnerHTML={createLeyend(this.state.leyend)}></div>
+					<div>
+						<div style={theme.customStyles.chart}>{chart}</div>
+						<div dangerouslySetInnerHTML={createLeyend(this.state.leyend)}></div>
+					</div>
+			<Menu style={theme.customStyles.chart} menuItems={items}/>
 		</div>;
 
 	}

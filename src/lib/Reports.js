@@ -12,7 +12,7 @@ var BarChart = Charts.BarChart,
 var Reports = [
 	{
 		routeName: "pie",
-		routePath: "/piepiepie",
+		routePath: "/pie",
 		label: "Pie Report",
 		handler: PieChart
 	},

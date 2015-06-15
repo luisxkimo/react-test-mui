@@ -44,15 +44,15 @@ theme.customStyles.menuHeader = {
 theme.customStyles.company = {
 	marginLeft: '10px',
 	color: MUI.Styles.Typography.textFullWhite
-
 };
 
 theme.customStyles.main = {
-
 	textAlign: 'center'
-
 };
 
+theme.customStyles.chart = {
+	float:'left'
+};
 
 
 module.exports = theme;
